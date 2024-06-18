@@ -1,10 +1,10 @@
 import { useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
-import pages from '../../../utils/pages';
-import BookingForm from './BookingForm';
 import { Box, Heading } from '@chakra-ui/react';
+import BookingForm from './BookingForm';
 import { fetchAPI, submitAPI } from '../../../utils/api';
+
 
 
 const updateTimes = (availableTimes, date) => {
@@ -12,8 +12,7 @@ const updateTimes = (availableTimes, date) => {
     return response.length !== 0 ? response : availableTimes;
 };
 
-const initializeTimes = initialAvailableTimes =>
-    [...initialAvailableTimes, ...fetchAPI(new Date())];
+const initializeTimes = initialAvailableTimes => [...initialAvailableTimes, ...fetchAPI(new Date())];
 
 const Bookings = () => {
     const [availableTimes, dispatchOnDateChange] = useReducer(updateTimes, [], initializeTimes);
@@ -21,7 +20,7 @@ const Bookings = () => {
 
     const submitData = formData => {
         const response = submitAPI(formData);
-        if (response) navigate(pages.get('confirmedBooking').path);
+        if (response) navigate('/confirmed-booking');
     };
 
     return (
