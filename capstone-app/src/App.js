@@ -7,7 +7,6 @@ import Layout from './components/layout/Layout';
 import Home from './components/pages/Home';
 import Bookings from './components/pages/Bookings/index.js';
 import ConfirmedBooking from './components/pages/Bookings/ConfirmedBookings';
-//import NotFound from './components/pages/NotFound';
 import UnderConstruction from './components/pages/Construction';
 
 const App = () => {

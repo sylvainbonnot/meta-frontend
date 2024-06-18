@@ -29,7 +29,7 @@ const Header = () => {
                             to={navLink.path}
                             style={{
                                 fontWeight: pathname === navLink.path ? 'bold' : 'normal',
-                                backgroundColor: pathname === navLink.path ? 'yellow' : 'transparent',
+                                backgroundColor: pathname === navLink.path ? '#F4CE14' : 'transparent',
                                 padding: '8px 15px',
                                 borderRadius: '5px'
                             }}
