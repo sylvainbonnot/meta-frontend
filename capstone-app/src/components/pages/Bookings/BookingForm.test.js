@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import BookingForm from './BookingForm';
 
 describe('Booking form', () => {
@@ -53,11 +53,13 @@ describe('Booking form', () => {
 
         await screen.findByText('Make your reservation'); // Ensuring the form submission is processed
 
-        expect(submitData).toHaveBeenCalledWith({
-            date: today,
-            time: availableTimes[0],
-            numberOfGuests: 1,
-            occasion: 'Birthday',
+        await waitFor(() => {
+            expect(submitData).toHaveBeenCalledWith({
+                date: today,
+                time: availableTimes[0],
+                numberOfGuests: 1,
+                occasion: 'Birthday',
+            });
         });
     });
 
@@ -73,7 +75,9 @@ describe('Booking form', () => {
         const submitButton = screen.getByRole('button');
 
         expect(errorMessage).toBeInTheDocument();
-        expect(submitButton).toBeDisabled();
+        await waitFor(() => {
+            expect(submitButton).toBeDisabled();
+        });
     });
 
     test('should display an error message and disable submit button when number of guests field\'s value is empty', async () => {

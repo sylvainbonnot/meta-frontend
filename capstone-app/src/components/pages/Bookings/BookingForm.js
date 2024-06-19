@@ -33,7 +33,7 @@ const BookingForm = ({ availableTimes, dispatchOnDateChange, submitData }) => {
                 setSubmitting(false);
             }}
         >
-            {({ values, handleChange, setFieldValue }) => (
+            {({ values, handleChange, setFieldValue, isValid, isSubmitting }) => (
                 <Box className="bookings" maxWidth="400px" margin="0 auto" p={4} borderWidth="1px" borderRadius="lg" boxShadow="lg">
                     <Form>
                         <Box mb={4}>
@@ -110,7 +110,7 @@ const BookingForm = ({ availableTimes, dispatchOnDateChange, submitData }) => {
                             type="submit"
                             colorScheme="teal"
                             size="lg"
-                            disabled={!validationSchema.isValidSync(values)}
+                            isDisabled={!isValid || isSubmitting}
                         >
                             Make your reservation
                         </Button>
