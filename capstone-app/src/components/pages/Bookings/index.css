@@ -16,6 +16,20 @@
     cursor: pointer;
 }
 
+.custom-input {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    cursor: pointer;
+    border-radius: 0.375rem;
+    height: 2.5rem;
+    width: 80%;
+
+    padding-inline-start: 1rem;
+}
+
+
+
 .form-field p {
     font-size: 0.9375rem;
     color: red;
