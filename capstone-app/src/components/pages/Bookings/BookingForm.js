@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, FormControl, FormLabel, FormErrorMessage, Input, Select } from '@chakra-ui/react';
+import './index.css'; // Ensure this path is correct
 
 const BookingForm = ({ availableTimes, dispatchOnDateChange, submitData }) => {
     const minimumDate = new Date().toISOString().split('T')[0];
@@ -36,11 +37,12 @@ const BookingForm = ({ availableTimes, dispatchOnDateChange, submitData }) => {
             {({ values, handleChange, setFieldValue, isValid, isSubmitting }) => (
                 <Box className="bookings" maxWidth="400px" margin="0 auto" p={4} borderWidth="1px" borderRadius="lg" boxShadow="lg">
                     <Form>
-                        <Box mb={4}>
+                        <Box mb={4} className="form-field">
                             <FormControl isInvalid={!!<ErrorMessage name="date" />}>
                                 <FormLabel htmlFor="booking-date">Date</FormLabel>
                                 <Field
                                     as={Input}
+                                    className="custom-input"
                                     type="date"
                                     id="booking-date"
                                     name="date"
@@ -50,56 +52,57 @@ const BookingForm = ({ availableTimes, dispatchOnDateChange, submitData }) => {
                                         dispatchOnDateChange(e.target.value);
                                     }}
                                 />
-                                <FormErrorMessage>
+                                <FormErrorMessage className="custom-error">
                                     <ErrorMessage name="date" />
                                 </FormErrorMessage>
                             </FormControl>
                         </Box>
 
-                        <Box mb={4}>
+                        <Box mb={4} className="form-field">
                             <FormControl isInvalid={!!<ErrorMessage name="time" />}>
                                 <FormLabel htmlFor="booking-time">Time</FormLabel>
-                                <Field as={Select} id="booking-time" name="time">
+                                <Field as={Select} className="custom-select" id="booking-time" name="time">
                                     {reservationTimes.map((time) => (
                                         <option data-testid="booking-time-option" key={time} value={time}>
                                             {time}
                                         </option>
                                     ))}
                                 </Field>
-                                <FormErrorMessage>
+                                <FormErrorMessage className="custom-error">
                                     <ErrorMessage name="time" />
                                 </FormErrorMessage>
                             </FormControl>
                         </Box>
 
-                        <Box mb={4}>
+                        <Box mb={4} className="form-field">
                             <FormControl isInvalid={!!<ErrorMessage name="numberOfGuests" />}>
                                 <FormLabel htmlFor="booking-number-guests">Number of guests</FormLabel>
                                 <Field
                                     as={Input}
+                                    className="custom-input"
                                     type="number"
                                     id="booking-number-guests"
                                     name="numberOfGuests"
                                     min={minimumNumberOfGuests}
                                     max={maximumNumberOfGuests}
                                 />
-                                <FormErrorMessage>
+                                <FormErrorMessage className="custom-error">
                                     <ErrorMessage name="numberOfGuests" />
                                 </FormErrorMessage>
                             </FormControl>
                         </Box>
 
-                        <Box mb={4}>
+                        <Box mb={4} className="form-field">
                             <FormControl isInvalid={!!<ErrorMessage name="occasion" />}>
                                 <FormLabel htmlFor="booking-occasion">Occasion</FormLabel>
-                                <Field as={Select} id="booking-occasion" name="occasion">
+                                <Field as={Select} className="custom-select" id="booking-occasion" name="occasion">
                                     {occasions.map((occasion) => (
                                         <option data-testid="booking-occasion-option" key={occasion} value={occasion}>
                                             {occasion}
                                         </option>
                                     ))}
                                 </Field>
-                                <FormErrorMessage>
+                                <FormErrorMessage className="custom-error">
                                     <ErrorMessage name="occasion" />
                                 </FormErrorMessage>
                             </FormControl>
